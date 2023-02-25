@@ -15,8 +15,8 @@ const data = [
   {
     id: 2,
     title: "Title",
-    img2: "https://img.ltwebstatic.com/images3_pi/2022/08/03/1659512255832fef934c32ac0f9d3afd7e6a17e03c.webp",
-    img: "https://img.ltwebstatic.com/images3_pi/2021/06/20/1624199588bf3c7183e42db4b7beddebe128faf14c_thumbnail_600x.webp",
+    img: "https://img.ltwebstatic.com/images3_pi/2022/10/18/1666061611f12fe45775c75d3fb21e38b7f87cece7_thumbnail_600x.webp",
+    img2: "https://img.ltwebstatic.com/images3_pi/2022/10/18/166606161006e99bb9bfb5f60ba9e8a973b1b5af2a_thumbnail_600x.webp",
     isNew: false,
     oldPrice: 25,
     price: 20,
