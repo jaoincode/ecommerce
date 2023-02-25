@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
@@ -11,7 +11,7 @@ import Footer from "./components/Footer";
 
 function Layout() {
   return (
-    <div className="app">
+    <div className="App">
       <Navbar />
       <Outlet />
       <Footer />
@@ -42,7 +42,7 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <RouterProvider router={router} />
     </div>
   );
