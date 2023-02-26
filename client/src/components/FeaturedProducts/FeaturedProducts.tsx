@@ -24,11 +24,14 @@ function FeaturedProducts({ type }: { type: ProductsType }) {
         </p>
       </div>
       <div className="bottom">
-        {data &&
-          data.length > 0 &&
-          data.map((item) => (
-            <Card item={{ ...item.attributes, id: item.id }} key={item.id} />
-          ))}
+        {error
+          ? "Something went wrong!"
+          : loading
+          ? "Loading.."
+          : data &&
+            data.map((item) => (
+              <Card item={{ ...item.attributes, id: item.id }} key={item.id} />
+            ))}
       </div>
     </div>
   );

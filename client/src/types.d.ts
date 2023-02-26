@@ -35,3 +35,10 @@ declare type ProductsResponse = {
     data: ProductType[];
   };
 };
+
+declare type ListType = {
+  catId: number;
+  maxPrice: number;
+  sort: "desc" | "asc" | null;
+  subCats: string[];
+};
