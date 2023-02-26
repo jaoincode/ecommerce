@@ -2,14 +2,16 @@ import "./FeaturedProducts.scss";
 
 import Card from "../Card";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-import axios from "axios";
+import useFetch from "../../hooks/useFetch";
 
 type ProductsType = "featured" | "trending";
 
 function FeaturedProducts({ type }: { type: ProductsType }) {
-  const [products, setProducts] = useState<null | ProductType[]>([]);
+  const { data, loading, error } = useFetch(
+    `/products?populate=*&[filters][type][$eq]=${type}`
+  );
 
   return (
     <div className="featuredProducts">
@@ -22,9 +24,9 @@ function FeaturedProducts({ type }: { type: ProductsType }) {
         </p>
       </div>
       <div className="bottom">
-        {products &&
-          products.length > 0 &&
-          products.map((item) => (
+        {data &&
+          data.length > 0 &&
+          data.map((item) => (
             <Card item={{ ...item.attributes, id: item.id }} key={item.id} />
           ))}
       </div>

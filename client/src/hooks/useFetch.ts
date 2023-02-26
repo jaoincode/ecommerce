@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import { request } from "../request";
 
-const useFetch = async (url: string) => {
+const useFetch = (url: string) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [data, setData] = useState<null | ProductType[]>(null);
@@ -26,4 +26,4 @@ const useFetch = async (url: string) => {
   return { data, loading, error };
 };
 
-export default useEffect;
+export default useFetch;
