@@ -2,15 +2,7 @@ import "./Card.scss";
 
 import { Link } from "react-router-dom";
 
-type ItemType = {
-  id: number;
-  title: string;
-  img: string;
-  img2: string;
-  isNew: boolean;
-  oldPrice: number;
-  price: number;
-};
+const UPLOAD_URL = import.meta.env.VITE_UPLOAD_URL;
 
 function Card({ item }: { item: ItemType }) {
   return (
@@ -18,12 +10,18 @@ function Card({ item }: { item: ItemType }) {
       <div className="card">
         <div className="image">
           {item.isNew && <span>New Season</span>}
-          <img src={item.img} className="mainImage" />
-          <img src={item.img2} className="secondImage" />
+          <img
+            src={`${UPLOAD_URL}${item.img.data.attributes.url}`}
+            className="mainImage"
+          />
+          <img
+            src={`${UPLOAD_URL}${item.img2.data.attributes.url}`}
+            className="secondImage"
+          />
         </div>
         <h2>{item.title}</h2>
         <div className="prices">
-          <h3>$ {item.oldPrice}</h3>
+          <h3>$ {item.oldPrice || item.price + 20}</h3>
           <h3>$ {item.price}</h3>
         </div>
       </div>
