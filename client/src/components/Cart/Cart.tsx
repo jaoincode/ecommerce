@@ -8,7 +8,7 @@ import { RootState } from "../../redux/store";
 
 import { useDispatch } from "react-redux";
 
-import { removeItem } from "../../redux/cartReducer";
+import { removeItem, resetCart } from "../../redux/cartReducer";
 
 const UPLOAD_URL = import.meta.env.VITE_UPLOAD_URL;
 
@@ -51,7 +51,9 @@ function Cart() {
         <span>$ {totalPrice()}</span>
       </div>
       <button>PROCEED TO CHECKOUT</button>
-      <span className="reset">Reset Cart</span>
+      <span className="reset" onClick={() => dispatch(resetCart())}>
+        Reset Cart
+      </span>
     </div>
   );
 }
