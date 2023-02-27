@@ -10,6 +10,10 @@ import { useDispatch } from "react-redux";
 
 import { removeItem, resetCart } from "../../redux/cartReducer";
 
+import { loadStripe } from "@stripe/stripe-js";
+
+import { request } from "../../request";
+
 const UPLOAD_URL = import.meta.env.VITE_UPLOAD_URL;
 
 function Cart() {
@@ -25,6 +29,24 @@ function Cart() {
   };
 
   const dispatch = useDispatch();
+
+  const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_KEY);
+
+  const handlePayment = async () => {
+    try {
+      const stripe = await stripePromise;
+
+      const res = await request.post(`/orders`, {
+        products,
+      });
+
+      await stripe?.redirectToCheckout({
+        sessionId: res.data.stripeSession.id,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="cart">
@@ -50,7 +72,7 @@ function Cart() {
         <span>SUBTOTAL</span>
         <span>$ {totalPrice()}</span>
       </div>
-      <button>PROCEED TO CHECKOUT</button>
+      <button onClick={handlePayment}>PROCEED TO CHECKOUT</button>
       <span className="reset" onClick={() => dispatch(resetCart())}>
         Reset Cart
       </span>
