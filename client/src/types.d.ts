@@ -11,6 +11,16 @@ declare type ProductType = {
   };
 };
 
+declare type ProductReducerType = {
+  id: number;
+  title: string;
+  desc: string;
+  img: string;
+  img2: string;
+  price: number;
+  quantity: number;
+};
+
 declare type ItemType = {
   id: number;
   title: string;

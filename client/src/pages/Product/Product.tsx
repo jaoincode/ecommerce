@@ -10,6 +10,10 @@ import useFetch from "../../hooks/useFetch";
 
 import { useParams } from "react-router-dom";
 
+import { useDispatch } from "react-redux";
+
+import { addToCart } from "../../redux/cartReducer";
+
 const UPLOAD_URL = import.meta.env.VITE_UPLOAD_URL;
 
 function Product() {
@@ -31,6 +35,8 @@ function Product() {
       setProduct(data as ProductType);
     }
   }, [data, error, loading]);
+
+  const dispatch = useDispatch();
 
   return (
     <div className="product">
@@ -77,7 +83,22 @@ function Product() {
                   {quantity}
                   <button onClick={() => handleQuantity("+")}>+</button>
                 </div>
-                <button className="add">
+                <button
+                  className="add"
+                  onClick={() =>
+                    dispatch(
+                      addToCart({
+                        id: product.id,
+                        title: product.attributes.title,
+                        desc: product.attributes.desc,
+                        img: product.attributes.img.data.attributes.url,
+                        img2: product.attributes.img2.data.attributes.url,
+                        price: product.attributes.price,
+                        quantity,
+                      })
+                    )
+                  }
+                >
                   <AddShoppingCartIcon /> ADD TO CART
                 </button>
                 <div className="links">
