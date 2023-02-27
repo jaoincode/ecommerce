@@ -8,12 +8,24 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 
 import { Link } from "react-router-dom";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Cart from "../Cart";
 
+import { useSelector } from "react-redux";
+
+import { RootState } from "../../redux/store";
+
 function Navbar() {
   const [open, setOpen] = useState(false);
+
+  const products = useSelector(
+    (state: RootState) => state.cart.products
+  ) as ProductReducerType[];
+
+  useEffect(() => {
+    setOpen(true);
+  }, [products]);
 
   return (
     <header className="navbar">
@@ -78,7 +90,7 @@ function Navbar() {
             <FavoriteBorderOutlinedIcon />
             <div className="cartIcon" onClick={() => setOpen(!open)}>
               <ShoppingCartOutlinedIcon />
-              <span>0</span>
+              <span>{products.length}</span>
             </div>
           </div>
         </div>

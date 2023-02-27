@@ -6,6 +6,10 @@ import { useSelector } from "react-redux";
 
 import { RootState } from "../../redux/store";
 
+import { useDispatch } from "react-redux";
+
+import { removeItem } from "../../redux/cartReducer";
+
 const UPLOAD_URL = import.meta.env.VITE_UPLOAD_URL;
 
 function Cart() {
@@ -19,6 +23,8 @@ function Cart() {
 
     return total.toFixed(2);
   };
+
+  const dispatch = useDispatch();
 
   return (
     <div className="cart">
@@ -34,7 +40,10 @@ function Cart() {
                 {item.quantity} x ${item.price}
               </div>
             </div>
-            <DeleteIcon className="delete" />
+            <DeleteIcon
+              className="delete"
+              onClick={() => dispatch(removeItem(item.id))}
+            />
           </div>
         ))}
       <div className="total">
