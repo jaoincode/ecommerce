@@ -5,7 +5,7 @@ import { request } from "../request";
 const useFetch = (url: string) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [data, setData] = useState<null | ProductType[]>(null);
+  const [data, setData] = useState<null | ProductType[] | ProductType>(null);
 
   useEffect(() => {
     const fetchData = async () => {

@@ -17,7 +17,7 @@ function List({ catId, maxPrice, sort, subCats }: ListType) {
         ? "Something went wrong"
         : loading
         ? "Loading.."
-        : data &&
+        : Array.isArray(data) &&
           data.map((item) => (
             <Card key={item.id} item={{ ...item.attributes, id: item.id }} />
           ))}

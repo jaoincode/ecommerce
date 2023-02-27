@@ -37,7 +37,8 @@ function Products() {
       <div className="left">
         <div className="filterItem">
           <h2>Product Categories</h2>
-          {data &&
+          {Array.isArray(data) &&
+            data.length > 0 &&
             data.map((item) => (
               <div className="inputItem" key={item.id}>
                 <input
